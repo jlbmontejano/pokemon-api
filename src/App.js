@@ -8,7 +8,7 @@ const App = () => {
   const [searchfield, setSearchfield] = useState("");
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=50&offset=${offset}`)
       .then(res => res.json())
       .then(data => setPokemons(data.results))
       .catch(err => console.error(err));
@@ -34,10 +34,7 @@ const App = () => {
           />
         </div>
         <p>SEARCH FOR A POKEMON:</p>
-        <input
-          type="text"
-          onChange={handleChange}
-        />
+        <input type="text" onChange={handleChange} />
       </div>
       <div className="button-section">
         {offset === 0 ? (
@@ -45,7 +42,7 @@ const App = () => {
         ) : (
           <button
             onClick={() => {
-              setOffset(offset - 20);
+              setOffset(offset - 50);
               window.scrollTo(0, 0);
             }}
           >
@@ -54,12 +51,15 @@ const App = () => {
         )}
         <button
           onClick={() => {
-            setOffset(offset + 20);
+            setOffset(offset + 50);
             window.scrollTo(0, 0);
           }}
         >
           Next&nbsp;&gt;&gt;
         </button>
+      </div>
+      <div>
+        <p>Click on a Pokemon's name to show more info...</p>
       </div>
       <table>
         <thead>
@@ -72,9 +72,13 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredPokemons.map(pokemon => {
-            return <Pokemon pokemon={pokemon} />;
-          })}
+          {filteredPokemons.length !== 0 ? (
+            filteredPokemons.map(pokemon => {
+              return <Pokemon pokemon={pokemon} />;
+            })
+          ) : (
+            <td colSpan={5}>NO RESULTS AVAILABLE</td>
+          )}
         </tbody>
       </table>
       <div className="button-section">
@@ -83,7 +87,7 @@ const App = () => {
         ) : (
           <button
             onClick={() => {
-              setOffset(offset - 20);
+              setOffset(offset - 50);
               window.scrollTo(0, 0);
             }}
           >
@@ -92,7 +96,7 @@ const App = () => {
         )}
         <button
           onClick={() => {
-            setOffset(offset + 20);
+            setOffset(offset + 50);
             window.scrollTo(0, 0);
           }}
         >

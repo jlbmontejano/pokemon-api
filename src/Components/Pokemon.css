@@ -3,11 +3,24 @@ td img {
     height: 50px;
 }
 
+.pokemon-name:hover {
+    cursor: pointer;
+}
+
 .type {
     color: white;
     border-radius: .25em;
     width: 4.5em;
     height: fit-content;
+}
+
+h4,
+.more-info p {
+    margin: 0;
+}
+
+.info-number {
+    display: inline-block;
 }
 
 @media (min-width: 600px) {
