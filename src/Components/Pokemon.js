@@ -72,11 +72,14 @@ const Pokemon = ({ pokemon }) => {
             <p className="info-number">{information.experience}</p>
           </td>
           <td>
-            <h4 className="info-number">Height:&nbsp;</h4>
-            <p className="info-number">{information.height / 10} m</p>
-
-            <h4 className="info-number">Weight:&nbsp;</h4>
-            <p className="info-number">{information.weight / 10} kg</p>
+            <div>
+              <h4 className="info-number">Height:&nbsp;</h4>
+              <p className="info-number">{information.height / 10} m</p>
+            </div>
+            <div>
+              <h4 className="info-number">Weight:&nbsp;</h4>
+              <p className="info-number">{information.weight / 10} kg</p>
+            </div>
           </td>
         </tr>
       )}
