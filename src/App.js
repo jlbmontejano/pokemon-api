@@ -33,9 +33,9 @@ const App = () => {
             alt="pokemon logo"
           />
         </div>
+        <p>SEARCH FOR A POKEMON:</p>
         <input
           type="text"
-          placeholder="SEARCH FOR A POKEMON..."
           onChange={handleChange}
         />
       </div>
@@ -61,20 +61,22 @@ const App = () => {
           Next&nbsp;&gt;&gt;
         </button>
       </div>
-      <div className="header">
-        <h3>Entry</h3>
-        <h3>Image</h3>
-        <h3>Name</h3>
-        <div className="type-divider">
-          <h3>Type 1</h3>
-          <h3>Type 2</h3>
-        </div>
-      </div>
-      <div>
-        {filteredPokemons.map(pokemon => {
-          return <Pokemon pokemon={pokemon} />;
-        })}
-      </div>
+      <table>
+        <thead>
+          <tr>
+            <th className="th-entry">Entry</th>
+            <th className="th-image">Image</th>
+            <th className="th-name">Name</th>
+            <th className="th-type">Type 1</th>
+            <th className="th-type">Type 2</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredPokemons.map(pokemon => {
+            return <Pokemon pokemon={pokemon} />;
+          })}
+        </tbody>
+      </table>
       <div className="button-section">
         {offset === 0 ? (
           <button disabled>&lt;&lt;&nbsp;Previous</button>
