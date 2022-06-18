@@ -72,9 +72,13 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredPokemons.map(pokemon => {
-            return <Pokemon pokemon={pokemon} />;
-          })}
+          {filteredPokemons.length !== 0 ? (
+            filteredPokemons.map(pokemon => {
+              return <Pokemon pokemon={pokemon} />;
+            })
+          ) : (
+            <td colSpan={5}>NO RESULTS AVAILABLE</td>
+          )}
         </tbody>
       </table>
       <div className="button-section">
