@@ -1,13 +1,61 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --clr-logo-yellow: #FFCB05;
+  --clr-logo-blue: #2A75BB;
+  --clr-logo-dark-yellow: #C7A008;
+  --clr-logo-dark-blue: #3C5AA6;
+  --clr-normal: #A8A77A;
+  --clr-fire: #EE8130;
+  --clr-water: #6390F0;
+  --clr-electric: #F7D02C;
+  --clr-grass: #7AC74C;
+  --clr-ice: #96D9D6;
+  --clr-fighting: #C22E28;
+  --clr-poison: #A33EA1;
+  --clr-ground: #E2BF65;
+  --clr-flying: #A98FF3;
+  --clr-psychic: #F95587;
+  --clr-bug: #A6B91A;
+  --clr-rock: #B6A136;
+  --clr-ghost: #735797;
+  --clr-dragon: #6F35FC;
+  --clr-dark: #705746;
+  --clr-steel: #B7B7CE;
+  --clr-fairy: #D685AD;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+  text-align: center;
+}
+
+body {
+  font-family: 'Hind', sans-serif;
+  font-size: 12px;
+  height: 100vh;
+  text-transform: uppercase;
+}
+
+@media (min-width: 600px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 900px) {
+  body {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1200px) {
+  body {
+    font-size: 24px;
+  }
 }
