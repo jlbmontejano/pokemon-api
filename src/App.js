@@ -40,8 +40,12 @@ const App = () => {
         <input type="text" onChange={handleChange} />
       </div>
       <Buttons offset={offset} setOffset={setOffset} />
-      <div>
-        <p>Click on a Pokemon's name to show more info...</p>
+
+      <div className="notes">
+        <p>
+          Currently displaying #{offset + 1} - #{offset + 25}
+        </p>
+        <p>Note: Click on a Pokemon's name to show more info</p>
       </div>
       <table>
         <thead>
