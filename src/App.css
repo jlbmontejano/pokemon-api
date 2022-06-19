@@ -1,3 +1,15 @@
+.notes {
+  font-size: .8em;
+  width: 99%;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.notes p {
+  margin-bottom: 0;
+}
+
 table {
   width: 99%;
   margin: 0 auto;
