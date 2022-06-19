@@ -5,10 +5,11 @@
 }
 
 :root {
-  --clr-logo-yellow: #FFCB05;
-  --clr-logo-blue: #2A75BB;
-  --clr-logo-dark-yellow: #C7A008;
-  --clr-logo-dark-blue: #3C5AA6;
+  --clr-logo-yellow: #FFCC00;
+  --clr-logo-blue: #0075BE;
+  --clr-logo-dark-yellow: #D5A100;
+  --clr-logo-dark-blue: #0A285F;
+  --clr-background: #919191;
   --clr-normal: #A8A77A;
   --clr-fire: #EE8130;
   --clr-water: #6390F0;
@@ -33,13 +34,18 @@ html,
 body {
   scroll-behavior: smooth;
   text-align: center;
+  margin: 0;
 }
 
 body {
   font-family: 'Hind', sans-serif;
-  font-size: 12px;
+  font-size: 10px;
   height: 100vh;
   text-transform: uppercase;
+}
+
+a {
+  text-decoration: none;
 }
 
 @media (min-width: 600px) {

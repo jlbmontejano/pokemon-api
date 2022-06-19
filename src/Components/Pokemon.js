@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Pokemon.css";
 
 const Pokemon = ({ pokemon }) => {
@@ -11,7 +11,7 @@ const Pokemon = ({ pokemon }) => {
     experience: 0,
     stats: [],
   });
-  const [info, setInfo] = useState(false);
+  const [moreInfo, setMoreInfo] = useState(false);
 
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
     .then(res => res.json())
@@ -28,6 +28,10 @@ const Pokemon = ({ pokemon }) => {
     })
     .catch(err => console.error(err));
 
+  useEffect(() => {
+    setMoreInfo(false);
+  }, [pokemon.name]);
+
   return !information.types || !information.id ? (
     <></>
   ) : (
@@ -41,7 +45,7 @@ const Pokemon = ({ pokemon }) => {
           />
         </td>
         <td>
-          <p className="pokemon-name" onClick={() => setInfo(!info)}>
+          <p className="pokemon-name" onClick={() => setMoreInfo(!moreInfo)}>
             {pokemon.name}
           </p>
         </td>
@@ -49,7 +53,7 @@ const Pokemon = ({ pokemon }) => {
           return <td className={`type ${slot.type.name}`}>{slot.type.name}</td>;
         })}
       </tr>
-      {info === true && (
+      {moreInfo === true && (
         <tr className="more-info">
           <td colSpan={2}>
             <h4>Base Stats:</h4>

@@ -1,11 +1,5 @@
-select {
-  font-family: inherit;
-  font-size: .9em;
-  text-transform: uppercase;
-}
-
 table {
-  width: 100%;
+  width: 99%;
   margin: 0 auto;
 }
 
@@ -26,47 +20,7 @@ td {
 
 input {
   font-size: .75em;
-  width: 100%;
+  width: 99%;
   max-width: 600px;
   margin: 0 auto;
-}
-
-button {
-  font-family: inherit;
-  font-size: .9em;
-  text-transform: uppercase;
-  color: var(--clr-logo-blue);
-  width: 7.25em;
-  border: 3px solid var(--clr-logo-blue);
-  border-radius: .25em;
-  background-color: var(--clr-logo-yellow);
-}
-
-button:hover {
-  cursor: pointer;
-  transform: translateY(-2px);
-}
-
-button:active {
-  transform: translateY(2px);
-  color: var(--clr-logo-dark-blue);
-  border-color: var(--clr-logo-dark-blue);
-  background-color: var(--clr-logo-dark-yellow);
-}
-
-button:disabled {
-  transform: none;
-  opacity: 35%;
-  cursor: default;
-  pointer-events: none;
-}
-
-.button-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 1em 0;
 }

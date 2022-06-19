@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import Navigation from "./Components/Navigation";
 import Pokemon from "./Components/Pokemon";
+import Buttons from "./Components/Buttons";
 import "./App.css";
 
 const App = () => {
@@ -8,7 +10,7 @@ const App = () => {
   const [searchfield, setSearchfield] = useState("");
 
   useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=50&offset=${offset}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
       .then(res => res.json())
       .then(data => setPokemons(data.results))
       .catch(err => console.error(err));
@@ -26,6 +28,7 @@ const App = () => {
     <h1>Loading...</h1>
   ) : (
     <div className="App">
+      <Navigation />
       <div>
         <div>
           <img
@@ -36,28 +39,7 @@ const App = () => {
         <p>SEARCH FOR A POKEMON:</p>
         <input type="text" onChange={handleChange} />
       </div>
-      <div className="button-section">
-        {offset === 0 ? (
-          <button disabled>&lt;&lt;&nbsp;Previous</button>
-        ) : (
-          <button
-            onClick={() => {
-              setOffset(offset - 50);
-              window.scrollTo(0, 0);
-            }}
-          >
-            &lt;&lt;&nbsp;Previous
-          </button>
-        )}
-        <button
-          onClick={() => {
-            setOffset(offset + 50);
-            window.scrollTo(0, 0);
-          }}
-        >
-          Next&nbsp;&gt;&gt;
-        </button>
-      </div>
+      <Buttons offset={offset} setOffset={setOffset} />
       <div>
         <p>Click on a Pokemon's name to show more info...</p>
       </div>
@@ -81,28 +63,7 @@ const App = () => {
           )}
         </tbody>
       </table>
-      <div className="button-section">
-        {offset === 0 ? (
-          <button disabled>&lt;&lt;&nbsp;Previous</button>
-        ) : (
-          <button
-            onClick={() => {
-              setOffset(offset - 50);
-              window.scrollTo(0, 0);
-            }}
-          >
-            &lt;&lt;&nbsp;Previous
-          </button>
-        )}
-        <button
-          onClick={() => {
-            setOffset(offset + 50);
-            window.scrollTo(0, 0);
-          }}
-        >
-          Next&nbsp;&gt;&gt;
-        </button>
-      </div>
+      <Buttons offset={offset} setOffset={setOffset} />
     </div>
   );
 };

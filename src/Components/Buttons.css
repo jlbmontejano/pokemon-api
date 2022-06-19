@@ -1,0 +1,79 @@
+button {
+    font-family: inherit;
+    font-size: .9em;
+    text-transform: uppercase;
+    width: 7.25em;
+    border-radius: .25em;
+    color: white;
+    border: .2em solid black;
+    color: var(--clr-logo-blue);
+    border-color: var(--clr-logo-blue);
+    background-color: var(--clr-logo-yellow);
+}
+
+button:active {
+    transform: scale(.95);
+    color: var(--clr-logo-dark-blue);
+    border-color: var(--clr-logo-dark-blue);
+    background-color: var(--clr-logo-dark-yellow);
+}
+
+button:disabled {
+    transform: none;
+    opacity: 35%;
+    cursor: default;
+    pointer-events: none;
+}
+
+button span {
+    cursor: pointer;
+    transition: .5s;
+    position: relative;
+    display: inline-block;
+}
+
+.prev-button span::before,
+.next-button span::after {
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    transition: .5s;
+}
+
+.prev-button span::before {
+    content: '\00AB';
+    left: -20px;
+}
+
+.prev-button:hover span {
+    padding-left: 25px;
+}
+
+.prev-button:hover span:before {
+    opacity: 1;
+    left: 0;
+}
+
+.next-button span::after {
+    content: '\00BB';
+    right: -20px;
+}
+
+.next-button:hover span {
+    padding-right: 25px;
+}
+
+.next-button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+.button-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1em 0;
+}
