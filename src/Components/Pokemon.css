@@ -7,11 +7,16 @@ td img {
     cursor: pointer;
 }
 
-.type {
+td.type {
     color: white;
     border-radius: .25em;
     width: 4.5em;
     height: fit-content;
+}
+
+td img:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
 }
 
 h4,
