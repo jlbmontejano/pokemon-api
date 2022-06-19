@@ -36,7 +36,7 @@ const App = () => {
             alt="pokemon logo"
           />
         </div>
-        <p>SEARCH FOR A POKEMON:</p>
+        <p>Search for a Pokemon on the current page:</p>
         <input type="text" onChange={handleChange} />
       </div>
       <Buttons offset={offset} setOffset={setOffset} />
