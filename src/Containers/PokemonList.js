@@ -1,43 +1,31 @@
 import React, { useState, useEffect } from "react";
-import Navigation from "../Components/Navigation";
+import Searchfield from "../Components/Searchfield";
 import Pokemon from "../Components/Pokemon";
 import Buttons from "../Components/Buttons";
 import "./PokemonList.css";
 
 const PokemonList = () => {
   const [offset, setOffset] = useState(0);
-  const [pokemons, setPokemons] = useState([]);
-  const [searchfield, setSearchfield] = useState("");
+  const [allPokemons, setAllPokemons] = useState([]);
+  const [filteredPokemons, setFilteredPokemons] = useState(allPokemons);
 
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
       .then(res => res.json())
-      .then(data => setPokemons(data.results))
+      .then(data => setAllPokemons(data.results))
       .catch(err => console.error(err));
   }, [offset]);
 
-  const handleChange = event => {
-    setSearchfield(event.target.value);
-  };
-
-  const filteredPokemons = pokemons.filter(pokemon =>
-    pokemon.name.includes(searchfield.toLowerCase())
-  );
-
-  return !pokemons && filteredPokemons.length === 0 ? (
+  return !allPokemons === 0 ? (
     <h1>Loading...</h1>
   ) : (
     <div>
-      <div>
-        <div>
-          <img
-            src={process.env.PUBLIC_URL + "/images/pokemon-logo.svg"}
-            alt="pokemon logo"
-          />
-        </div>
-        <p>Search for a Pokemon on the current page:</p>
-        <input type="text" onChange={handleChange} />
-      </div>
+      <Searchfield
+        searchText={"a pokemon"}
+        completeArray={allPokemons}
+        resultsArray={filteredPokemons}
+      />
+
       <Buttons offset={offset} setOffset={setOffset} />
 
       <div className="notes">
