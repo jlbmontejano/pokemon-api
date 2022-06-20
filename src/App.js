@@ -10,16 +10,11 @@ import AbilitiesList from "./Containers/AbilitiesList";
 import "./App.css";
 
 const App = () => {
-  const initialState = {
-    allResults: [],
-    filteredResults: [],
-    offset: [],
-  };
   const [currentPage, setCurrentPage] = useState("pokemon");
-  const [shownInfo, setShownInfo] = useState(initialState);
-  // const [allResults, setAllResults] = useState([]);
-  // const [filteredResults, setFilteredResults] = useState([]);
-  // const [offset, setOffset] = useState(0);
+  const [allResults, setAllResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [offset, setOffset] = useState(0);
+
   return (
     <div className="App">
       <Navigation setCurrentPage={setCurrentPage} setOffset={setOffset} />
