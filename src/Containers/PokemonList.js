@@ -1,33 +1,28 @@
-import React, { useState, useEffect } from "react";
-import Searchfield from "../Components/Searchfield";
+import React, { useEffect } from "react";
 import Pokemon from "../Components/Pokemon";
-import Buttons from "../Components/Buttons";
 import "./PokemonList.css";
 
-const PokemonList = () => {
-  const [offset, setOffset] = useState(0);
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [filteredPokemons, setFilteredPokemons] = useState(allPokemons);
-
+const PokemonList = ({
+  allResults,
+  setAllResults,
+  filteredResults,
+  setFilteredResults,
+  offset,
+}) => {
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
       .then(res => res.json())
-      .then(data => setAllPokemons(data.results))
+      .then(data => {
+        setAllResults(data.results);
+        setFilteredResults(allResults);
+      })
       .catch(err => console.error(err));
   }, [offset]);
 
-  return !allPokemons === 0 ? (
+  return !allResults === 0 ? (
     <h1>Loading...</h1>
   ) : (
     <div>
-      <Searchfield
-        searchText={"a pokemon"}
-        completeArray={allPokemons}
-        resultsArray={filteredPokemons}
-      />
-
-      <Buttons offset={offset} setOffset={setOffset} />
-
       <div className="notes">
         <p>
           Currently displaying #{offset + 1} - #{offset + 25}
@@ -45,8 +40,8 @@ const PokemonList = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredPokemons.length !== 0 ? (
-            filteredPokemons.map(pokemon => {
+          {filteredResults.length !== 0 ? (
+            filteredResults.map(pokemon => {
               return <Pokemon pokemon={pokemon} />;
             })
           ) : (
@@ -56,7 +51,6 @@ const PokemonList = () => {
           )}
         </tbody>
       </table>
-      <Buttons offset={offset} setOffset={setOffset} />
     </div>
   );
 };

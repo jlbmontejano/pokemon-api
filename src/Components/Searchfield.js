@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
-const Searchfield = ({ searchText, completeArray, resultsArray }) => {
+const Searchfield = ({
+  allResults,
+  setAllResults,
+  filteredResults,
+  setFilteredResults,
+}) => {
   const [searchfield, setSearchfield] = useState("");
 
   const handleChange = event => {
     setSearchfield(event.target.value);
   };
 
-  resultsArray = completeArray.filter(entry =>
+  filteredResults = allResults.filter(entry =>
     entry.name.includes(searchfield.toLowerCase())
   );
 
@@ -19,7 +24,7 @@ const Searchfield = ({ searchText, completeArray, resultsArray }) => {
           alt="pokemon logo"
         />
       </div>
-      <p>Search for {searchText} on the current page:</p>
+      <p>Search on the current page:</p>
       <input type="text" onChange={handleChange} />
     </div>
   );
