@@ -1,44 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import Pokemon from "../Components/Pokemon";
-import Buttons from "../Components/Buttons";
 import "./PokemonList.css";
 
-const PokemonList = () => {
-  const [offset, setOffset] = useState(0);
-  const [pokemons, setPokemons] = useState([]);
-  const [searchfield, setSearchfield] = useState("");
-
-  useEffect(() => {
+const PokemonList = ({
+  allResults,
+  setAllResults,
+  filteredResults,
+  setFilteredResults,
+  offset,
+}) => {
+  const handleFetch = () => {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
       .then(res => res.json())
-      .then(data => setPokemons(data.results))
+      .then(data => {
+        setAllResults(data.results);
+        setFilteredResults(allResults);
+      })
       .catch(err => console.error(err));
+  };
+  useEffect(() => {
+    handleFetch();
+  });
+  useEffect(() => {
+    handleFetch();
   }, [offset]);
 
-  const handleChange = event => {
-    setSearchfield(event.target.value);
-  };
-
-  const filteredPokemons = pokemons.filter(pokemon =>
-    pokemon.name.includes(searchfield.toLowerCase())
-  );
-
-  return !pokemons && filteredPokemons.length === 0 ? (
+  return !allResults === 0 ? (
     <h1>Loading...</h1>
   ) : (
     <div>
-      <div>
-        <div>
-          <img
-            src={process.env.PUBLIC_URL + "/images/pokemon-logo.svg"}
-            alt="pokemon logo"
-          />
-        </div>
-        <p>Search on the current page:</p>
-        <input type="text" onChange={handleChange} />
-      </div>
-      <Buttons offset={offset} setOffset={setOffset} />
-
       <div className="notes">
         <p>
           Currently displaying #{offset + 1} - #{offset + 25}
@@ -56,8 +46,8 @@ const PokemonList = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredPokemons.length !== 0 ? (
-            filteredPokemons.map(pokemon => {
+          {filteredResults.length !== 0 ? (
+            filteredResults.map(pokemon => {
               return <Pokemon pokemon={pokemon} />;
             })
           ) : (
@@ -67,7 +57,6 @@ const PokemonList = () => {
           )}
         </tbody>
       </table>
-      <Buttons offset={offset} setOffset={setOffset} />
     </div>
   );
 };
