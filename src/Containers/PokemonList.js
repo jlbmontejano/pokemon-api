@@ -9,7 +9,7 @@ const PokemonList = ({
   setFilteredResults,
   offset,
 }) => {
-  useEffect(() => {
+  const handleFetch = () => {
     fetch(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
       .then(res => res.json())
       .then(data => {
@@ -17,6 +17,12 @@ const PokemonList = ({
         setFilteredResults(allResults);
       })
       .catch(err => console.error(err));
+  };
+  useEffect(() => {
+    handleFetch();
+  });
+  useEffect(() => {
+    handleFetch();
   }, [offset]);
 
   return !allResults === 0 ? (

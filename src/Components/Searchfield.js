@@ -1,20 +1,14 @@
 import React, { useState } from "react";
 
-const Searchfield = ({
-  allResults,
-  setAllResults,
-  filteredResults,
-  setFilteredResults,
-}) => {
+const Searchfield = ({ allResults, setFilteredResults }) => {
   const [searchfield, setSearchfield] = useState("");
 
   const handleChange = event => {
     setSearchfield(event.target.value);
+    setFilteredResults(
+      allResults.filter(entry => entry.name.includes(searchfield.toLowerCase()))
+    );
   };
-
-  filteredResults = allResults.filter(entry =>
-    entry.name.includes(searchfield.toLowerCase())
-  );
 
   return (
     <div>

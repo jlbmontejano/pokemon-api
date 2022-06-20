@@ -10,7 +10,7 @@ import AbilitiesList from "./Containers/AbilitiesList";
 import "./App.css";
 
 const App = () => {
-  const [currentPage, setCurrentPage] = useState("pokemon");
+  const [currentPage, setCurrentPage] = useState("home");
   const [allResults, setAllResults] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [offset, setOffset] = useState(0);
@@ -24,8 +24,6 @@ const App = () => {
         <>
           <Searchfield
             allResults={allResults}
-            setAllResults={setAllResults}
-            filteredResults={filteredResults}
             setFilteredResults={setFilteredResults}
           />
           <Buttons offset={offset} setOffset={setOffset} />
