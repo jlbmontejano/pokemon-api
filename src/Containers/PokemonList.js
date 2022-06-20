@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Navigation from "../Components/Navigation";
 import Pokemon from "../Components/Pokemon";
 import Buttons from "../Components/Buttons";
 import "./PokemonList.css";
@@ -35,7 +34,7 @@ const PokemonList = () => {
             alt="pokemon logo"
           />
         </div>
-        <p>Search for a Pokemon on the current page:</p>
+        <p>Search on the current page:</p>
         <input type="text" onChange={handleChange} />
       </div>
       <Buttons offset={offset} setOffset={setOffset} />
@@ -49,11 +48,11 @@ const PokemonList = () => {
       <table>
         <thead>
           <tr>
-            <th className="th-entry">Entry</th>
-            <th className="th-image">Image</th>
-            <th className="th-name">Name</th>
-            <th className="th-type">Type 1</th>
-            <th className="th-type">Type 2</th>
+            <th className="th-pokemon-entry">Entry</th>
+            <th className="th-pokemon-image">Image</th>
+            <th className="th-pokemon-name">Name</th>
+            <th className="th-pokemon-type">Type 1</th>
+            <th className="th-pokemon-type">Type 2</th>
           </tr>
         </thead>
         <tbody>

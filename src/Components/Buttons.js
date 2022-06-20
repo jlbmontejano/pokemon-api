@@ -1,7 +1,7 @@
 import React from "react";
 import "./Buttons.css";
 
-const Buttons = ({ offset, setOffset }) => {
+const Buttons = ({ offset = 0, setOffset = () => {} }) => {
   return (
     <div>
       <div className="button-section">
