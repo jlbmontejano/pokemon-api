@@ -1,10 +1,17 @@
 import React from "react";
-import "./Navigation.css";
+import "./Components.css";
 
-const Navigation = ({ setCurrentPage, setOffset }) => {
+const Navigation = ({
+  setCurrentPage,
+  setAllResults,
+  setFilteredResults,
+  setOffset,
+}) => {
   const handleChange = option => {
-    setCurrentPage(option);
+    setAllResults([]);
+    setFilteredResults([]);
     setOffset(0);
+    setCurrentPage(option);
   };
 
   return (
@@ -18,14 +25,8 @@ const Navigation = ({ setCurrentPage, setOffset }) => {
       <p className="navigation-types" onClick={() => handleChange("types")}>
         Types
       </p>
-      <p className="navigation-moves" onClick={() => handleChange("types")}>
+      <p className="navigation-moves" onClick={() => handleChange("moves")}>
         Moves
-      </p>
-      <p
-        className="navigation-abilities"
-        onClick={() => handleChange("abilities")}
-      >
-        Abilities
       </p>
     </nav>
   );

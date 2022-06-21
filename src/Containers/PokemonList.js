@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import Pokemon from "../Components/Pokemon";
-import "./PokemonList.css";
+import Pokemon from "./Individual/Pokemon";
+import "./Containers.css";
 
 const PokemonList = ({
   allResults,
@@ -20,12 +20,12 @@ const PokemonList = ({
   };
   useEffect(() => {
     handleFetch();
-  });
+  }, []);
   useEffect(() => {
     handleFetch();
   }, [offset]);
 
-  return !allResults === 0 ? (
+  return allResults.length === 0 ? (
     <h1>Loading...</h1>
   ) : (
     <div>

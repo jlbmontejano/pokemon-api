@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Type.css";
+import "./Individual.css";
 
 const Type = ({ type }) => {
   const [information, setInformation] = useState({

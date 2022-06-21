@@ -1,5 +1,5 @@
 import React from "react";
-import "./Buttons.css";
+import "./Components.css";
 
 const Buttons = ({ offset = 0, setOffset = () => {} }) => {
   return (

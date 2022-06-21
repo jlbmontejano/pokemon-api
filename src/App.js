@@ -6,7 +6,6 @@ import Home from "./Containers/Home";
 import PokemonList from "./Containers/PokemonList";
 import TypesList from "./Containers/TypesList";
 import MovesList from "./Containers/MovesList";
-import AbilitiesList from "./Containers/AbilitiesList";
 import "./App.css";
 
 const App = () => {
@@ -17,7 +16,12 @@ const App = () => {
 
   return (
     <div className="App">
-      <Navigation setCurrentPage={setCurrentPage} setOffset={setOffset} />
+      <Navigation
+        setCurrentPage={setCurrentPage}
+        setAllResults={setAllResults}
+        setFilteredResults={setFilteredResults}
+        setOffset={setOffset}
+      />
       {currentPage === "home" ? (
         <Home />
       ) : (
@@ -41,7 +45,6 @@ const App = () => {
               setAllResults={setAllResults}
               filteredResults={filteredResults}
               setFilteredResults={setFilteredResults}
-              offset={offset}
             />
           ) : currentPage === "moves" ? (
             <MovesList
@@ -52,13 +55,7 @@ const App = () => {
               offset={offset}
             />
           ) : (
-            <AbilitiesList
-              allResults={allResults}
-              setAllResults={setAllResults}
-              filteredResults={filteredResults}
-              setFilteredResults={setFilteredResults}
-              offset={offset}
-            />
+            <></>
           )}
           <Buttons offset={offset} setOffset={setOffset} />
         </>

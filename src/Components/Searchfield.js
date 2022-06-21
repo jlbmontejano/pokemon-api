@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./Components.css";
 
 const Searchfield = ({ allResults, setFilteredResults }) => {
   const [searchfield, setSearchfield] = useState("");

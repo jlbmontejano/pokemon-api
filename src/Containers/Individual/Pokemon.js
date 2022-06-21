@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./Pokemon.css";
+import "./Individual.css";
 
 const Pokemon = ({ pokemon }) => {
   const [information, setInformation] = useState({
+    name: pokemon.name,
     types: [],
     id: "",
     abilities: [],
