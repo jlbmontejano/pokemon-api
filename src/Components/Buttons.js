@@ -1,7 +1,21 @@
 import React from "react";
 import "./Components.css";
 
-const Buttons = ({ offset = 0, setOffset = () => {} }) => {
+const Buttons = ({ offset = 0, setOffset = () => {}, currentPage }) => {
+  let disableNextButton = true;
+
+  fetch(
+    `https://pokeapi.co/api/v2/${currentPage}?limit=25&offset=${offset}`
+  )
+    .then(res => res.json())
+    .then(data => {
+      if (data.next === null) {
+        disableNextButton = true;
+      } else {
+        disableNextButton = false;
+      }
+    });
+
   return (
     <div>
       <div className="button-section">
@@ -20,15 +34,21 @@ const Buttons = ({ offset = 0, setOffset = () => {} }) => {
             <span>Previous</span>
           </button>
         )}
-        <button
-          className="next-button"
-          onClick={() => {
-            setOffset(offset + 25);
-            window.scrollTo(0, 0);
-          }}
-        >
-          <span>Next</span>
-        </button>
+        {disableNextButton === true ? (
+          <button className="next-button" disabled>
+            <span>Next</span>
+          </button>
+        ) : (
+          <button
+            className="next-button"
+            onClick={() => {
+              setOffset(offset + 25);
+              window.scrollTo(0, 0);
+            }}
+          >
+            <span>Next</span>
+          </button>
+        )}
       </div>
     </div>
   );

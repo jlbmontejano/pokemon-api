@@ -30,7 +30,11 @@ const App = () => {
             allResults={allResults}
             setFilteredResults={setFilteredResults}
           />
-          <Buttons offset={offset} setOffset={setOffset} />
+          <Buttons
+            offset={offset}
+            setOffset={setOffset}
+            currentPage={currentPage}
+          />
           {currentPage === "pokemon" ? (
             <PokemonList
               allResults={allResults}
@@ -39,14 +43,14 @@ const App = () => {
               setFilteredResults={setFilteredResults}
               offset={offset}
             />
-          ) : currentPage === "types" ? (
+          ) : currentPage === "type" ? (
             <TypesList
               allResults={allResults}
               setAllResults={setAllResults}
               filteredResults={filteredResults}
               setFilteredResults={setFilteredResults}
             />
-          ) : currentPage === "moves" ? (
+          ) : currentPage === "move" ? (
             <MovesList
               allResults={allResults}
               setAllResults={setAllResults}
@@ -57,7 +61,11 @@ const App = () => {
           ) : (
             <></>
           )}
-          <Buttons offset={offset} setOffset={setOffset} />
+          <Buttons
+            offset={offset}
+            setOffset={setOffset}
+            currentPage={currentPage}
+          />
         </>
       )}
     </div>

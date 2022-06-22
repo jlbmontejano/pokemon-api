@@ -22,10 +22,10 @@ const Navigation = ({
       <p className="navigation-pokedex" onClick={() => handleChange("pokemon")}>
         Pokemon
       </p>
-      <p className="navigation-types" onClick={() => handleChange("types")}>
+      <p className="navigation-types" onClick={() => handleChange("type")}>
         Types
       </p>
-      <p className="navigation-moves" onClick={() => handleChange("moves")}>
+      <p className="navigation-moves" onClick={() => handleChange("move")}>
         Moves
       </p>
     </nav>
