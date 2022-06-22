@@ -7,7 +7,7 @@ const MovesList = ({
   setAllResults,
   filteredResults,
   setFilteredResults,
-  offset,
+  offset = 0,
 }) => {
   const handleFetch = () => {
     fetch(`https://pokeapi.co/api/v2/move?limit=25&offset=${offset}`)

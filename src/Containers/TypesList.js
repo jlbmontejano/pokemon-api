@@ -7,16 +7,23 @@ const TypesList = ({
   setAllResults,
   filteredResults,
   setFilteredResults,
+  offset,
 }) => {
-  useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/type`)
+  const handleFetch = () => {
+    fetch(`https://pokeapi.co/api/v2/type?limit=25&offset=${offset}`)
       .then(res => res.json())
       .then(data => {
         setAllResults(data.results);
         setFilteredResults(allResults);
       })
       .catch(err => console.error(err));
+  };
+  useEffect(() => {
+    handleFetch();
   }, []);
+  useEffect(() => {
+    handleFetch();
+  }, [offset]);
 
   return allResults.length === 0 ? (
     <h1>Loading...</h1>
