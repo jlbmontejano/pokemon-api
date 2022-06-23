@@ -12,6 +12,7 @@ const Navigation = ({
     setFilteredResults([]);
     setOffset(0);
     setCurrentPage(option);
+
   };
 
   return (
