@@ -1,22 +1,16 @@
+/* POKEMON */
 td img {
     width: 50px;
     height: 50px;
 }
 
-.pokemon-name:hover {
-    cursor: pointer;
-}
-
-td.type {
-    color: white;
-    border-radius: .25em;
-    width: 4.5em;
-    height: fit-content;
-}
-
 td img:hover {
     cursor: pointer;
     transform: translateY(-2px);
+}
+
+.pokemon-name:hover {
+    cursor: pointer;
 }
 
 h4,
@@ -49,6 +43,29 @@ h4,
     }
 }
 
+/* TYPE */
+td.type {
+    color: white;
+    border-radius: .25em;
+    width: 4.5em;
+    height: fit-content;
+}
+
+.inside-table-damage td {
+    display: flex;
+    flex-direction: column;
+    margin: .05em auto;
+}
+
+.inside-table-damage td a {
+    color: white;
+}
+
+.inside-table-damage td:active {
+    transform: scale(.9);
+}
+
+/* TYPE COLORS */
 .normal {
     background-color: var(--clr-normal);
 }

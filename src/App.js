@@ -1,73 +1,73 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navigation from "./Components/Navigation";
-import Pokemon from "./Components/Pokemon";
+import Searchfield from "./Components/Searchfield";
 import Buttons from "./Components/Buttons";
+import Home from "./Containers/Home";
+import PokemonList from "./Containers/PokemonList";
+import TypesList from "./Containers/TypesList";
+import MovesList from "./Containers/MovesList";
 import "./App.css";
 
 const App = () => {
+  const [currentPage, setCurrentPage] = useState("home");
+  const [allResults, setAllResults] = useState([]);
+  const [filteredResults, setFilteredResults] = useState([]);
   const [offset, setOffset] = useState(0);
-  const [pokemons, setPokemons] = useState([]);
-  const [searchfield, setSearchfield] = useState("");
 
-  useEffect(() => {
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
-      .then(res => res.json())
-      .then(data => setPokemons(data.results))
-      .catch(err => console.error(err));
-  }, [offset]);
-
-  const handleChange = event => {
-    setSearchfield(event.target.value);
-  };
-
-  const filteredPokemons = pokemons.filter(pokemon =>
-    pokemon.name.includes(searchfield.toLowerCase())
-  );
-
-  return !pokemons ? (
-    <h1>Loading...</h1>
-  ) : (
+  return (
     <div className="App">
-      <Navigation />
-      <div>
-        <div>
-          <img
-            src={process.env.PUBLIC_URL + "/images/pokemon-logo.svg"}
-            alt="pokemon logo"
+      <Navigation
+        setCurrentPage={setCurrentPage}
+        setAllResults={setAllResults}
+        setFilteredResults={setFilteredResults}
+        setOffset={setOffset}
+      />
+      {currentPage === "home" ? (
+        <Home />
+      ) : (
+        <>
+          <Searchfield
+            allResults={allResults}
+            setFilteredResults={setFilteredResults}
           />
-        </div>
-        <p>Search for a Pokemon on the current page:</p>
-        <input type="text" onChange={handleChange} />
-      </div>
-      <Buttons offset={offset} setOffset={setOffset} />
-
-      <div className="notes">
-        <p>
-          Currently displaying #{offset + 1} - #{offset + 25}
-        </p>
-        <p>Note: Click on a Pokemon's name to show more info</p>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th className="th-entry">Entry</th>
-            <th className="th-image">Image</th>
-            <th className="th-name">Name</th>
-            <th className="th-type">Type 1</th>
-            <th className="th-type">Type 2</th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredPokemons.length !== 0 ? (
-            filteredPokemons.map(pokemon => {
-              return <Pokemon pokemon={pokemon} />;
-            })
+          <Buttons
+            offset={offset}
+            setOffset={setOffset}
+            currentPage={currentPage}
+          />
+          {currentPage === "pokemon" ? (
+            <PokemonList
+              allResults={allResults}
+              setAllResults={setAllResults}
+              filteredResults={filteredResults}
+              setFilteredResults={setFilteredResults}
+              offset={offset}
+            />
+          ) : currentPage === "type" ? (
+            <TypesList
+              allResults={allResults}
+              setAllResults={setAllResults}
+              filteredResults={filteredResults}
+              setFilteredResults={setFilteredResults}
+            />
+          ) : currentPage === "move" ? (
+            <MovesList
+              allResults={allResults}
+              setAllResults={setAllResults}
+              filteredResults={filteredResults}
+              setFilteredResults={setFilteredResults}
+              offset={offset}
+            />
           ) : (
-            <td colSpan={5}>NO RESULTS AVAILABLE</td>
+            <></>
           )}
-        </tbody>
-      </table>
-      <Buttons offset={offset} setOffset={setOffset} />
+          <Buttons
+            offset={offset}
+            setOffset={setOffset}
+            currentPage={currentPage}
+          />
+        </>
+      )}
     </div>
   );
 };

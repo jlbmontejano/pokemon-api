@@ -1,0 +1,44 @@
+/* POKEMON */
+.th-pokemon-entry,
+.th-pokemon-type {
+    width: 15%;
+}
+
+.th-pokemon-name {
+    width: 25%;
+}
+
+.notes {
+    font-size: .8em;
+    width: 99%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.notes p {
+    margin-bottom: 0;
+}
+
+/* TYPES */
+.th-types-entry,
+.th-types-type {
+    width: 6%;
+}
+
+/* MOVES */
+.th-moves-name {
+    width: 15%;
+}
+
+.th-moves-pp {
+    width: 5%;
+}
+
+.th-moves-damage-class {
+    width: 13%;
+}
+
+.th-moves-effect {
+    width: 40%;
+}
