@@ -3,13 +3,9 @@ import "./Components.css";
 
 const Navigation = ({
   setCurrentPage,
-  setAllResults,
-  setFilteredResults,
   setOffset,
 }) => {
   const handleChange = option => {
-    setAllResults([]);
-    setFilteredResults([]);
     setOffset(0);
     setCurrentPage(option);
   };

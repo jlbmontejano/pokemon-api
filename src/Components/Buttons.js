@@ -1,20 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Components.css";
 
 const Buttons = ({ offset = 0, setOffset = () => {}, currentPage }) => {
   let disableNextButton = true;
-
-  fetch(
-    `https://pokeapi.co/api/v2/${currentPage}?limit=25&offset=${offset}`
-  )
-    .then(res => res.json())
-    .then(data => {
-      if (data.next === null) {
-        disableNextButton = true;
-      } else {
-        disableNextButton = false;
-      }
-    });
+  useEffect(() => {
+    fetch(`https://pokeapi.co/api/v2/${currentPage}?limit=25&offset=${offset}`)
+      .then(res => res.json())
+      .then(data => {
+        if (data.next === null) {
+          disableNextButton = true;
+        } else {
+          disableNextButton = false;
+        }
+      });
+  }, [offset, currentPage]);
 
   return (
     <div>

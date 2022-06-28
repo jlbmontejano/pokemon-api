@@ -18,8 +18,6 @@ const App = () => {
     <div className="App">
       <Navigation
         setCurrentPage={setCurrentPage}
-        setAllResults={setAllResults}
-        setFilteredResults={setFilteredResults}
         setOffset={setOffset}
       />
       {currentPage === "home" ? (
