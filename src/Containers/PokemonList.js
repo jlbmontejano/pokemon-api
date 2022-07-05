@@ -1,30 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Pokemon from "./Individual/Pokemon";
 import "./Containers.css";
 
-const PokemonList = ({
-  allResults,
-  setAllResults,
-  filteredResults,
-  setFilteredResults,
-  offset,
-}) => {
-  const handleFetch = () => {
-    fetch(`https://pokeapi.co/api/v2/pokemon?limit=25&offset=${offset}`)
-      .then(res => res.json())
-      .then(data => {
-        setAllResults(data.results);
-        setFilteredResults(allResults);
-      })
-      .catch(err => console.error(err));
-  };
-  useEffect(() => {
-    handleFetch();
-  }, []);
-  useEffect(() => {
-    handleFetch();
-  }, [offset]);
-
+const PokemonList = ({ allResults, filteredResults, offset }) => {
   return allResults.length === 0 ? (
     <h1>Loading...</h1>
   ) : (
@@ -48,7 +26,7 @@ const PokemonList = ({
         <tbody>
           {filteredResults.length !== 0 ? (
             filteredResults.map(pokemon => {
-              return <Pokemon pokemon={pokemon} />;
+              return <Pokemon pokemon={pokemon} key={pokemon.name} />;
             })
           ) : (
             <tr>

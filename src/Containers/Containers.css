@@ -1,13 +1,3 @@
-/* POKEMON */
-.th-pokemon-entry,
-.th-pokemon-type {
-    width: 15%;
-}
-
-.th-pokemon-name {
-    width: 25%;
-}
-
 .notes {
     font-size: .8em;
     width: 99%;
@@ -18,6 +8,16 @@
 
 .notes p {
     margin-bottom: 0;
+}
+
+/* POKEMON */
+.th-pokemon-entry,
+.th-pokemon-type {
+    width: 15%;
+}
+
+.th-pokemon-name {
+    width: 25%;
 }
 
 /* TYPES */

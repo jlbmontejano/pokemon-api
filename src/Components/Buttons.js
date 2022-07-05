@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Components.css";
 
-const Buttons = ({ offset = 0, setOffset = () => {}, currentPage }) => {
-  let disableNextButton = true;
+const Buttons = ({ offset, setOffset, currentPage }) => {
+  const [disableNext, setDisableNext] = useState(true);
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/${currentPage}?limit=25&offset=${offset}`)
       .then(res => res.json())
       .then(data => {
         if (data.next === null) {
-          disableNextButton = true;
+          setDisableNext(true);
         } else {
-          disableNextButton = false;
+          setDisableNext(false);
         }
       });
   }, [offset, currentPage]);
@@ -33,7 +33,7 @@ const Buttons = ({ offset = 0, setOffset = () => {}, currentPage }) => {
             <span>Previous</span>
           </button>
         )}
-        {disableNextButton === true ? (
+        {disableNext === true ? (
           <button className="next-button" disabled>
             <span>Next</span>
           </button>

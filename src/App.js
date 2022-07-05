@@ -17,7 +17,10 @@ const App = () => {
   return (
     <div className="App">
       <Navigation
+        setAllResults={setAllResults}
+        setFilteredResults={setFilteredResults}
         setCurrentPage={setCurrentPage}
+        offset={offset}
         setOffset={setOffset}
       />
       {currentPage === "home" ? (
@@ -36,24 +39,18 @@ const App = () => {
           {currentPage === "pokemon" ? (
             <PokemonList
               allResults={allResults}
-              setAllResults={setAllResults}
               filteredResults={filteredResults}
-              setFilteredResults={setFilteredResults}
               offset={offset}
             />
           ) : currentPage === "type" ? (
             <TypesList
               allResults={allResults}
-              setAllResults={setAllResults}
               filteredResults={filteredResults}
-              setFilteredResults={setFilteredResults}
             />
           ) : currentPage === "move" ? (
             <MovesList
               allResults={allResults}
-              setAllResults={setAllResults}
               filteredResults={filteredResults}
-              setFilteredResults={setFilteredResults}
               offset={offset}
             />
           ) : (

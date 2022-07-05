@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./Individual.css";
 
-const Move = ({ move }) => {
-  const [information, setInformation] = useState({
+const Move = ({ move, key }) => {
+  const [moveInformation, setMoveInformation] = useState({
+    name: move.name,
     type: "",
     power: 0,
     pp: 0,
@@ -14,7 +15,7 @@ const Move = ({ move }) => {
   fetch(`https://pokeapi.co/api/v2/move/${move.name}`)
     .then(res => res.json())
     .then(data => {
-      setInformation({
+      setMoveInformation({
         type: data.type.name,
         power: data.power,
         pp: data.pp,
@@ -25,18 +26,22 @@ const Move = ({ move }) => {
     })
     .catch(err => console.error(err));
 
-  return !information ? (
-    <></>
+  return !moveInformation ? (
+    <>
+      <h1>Loading...</h1>
+    </>
   ) : (
     <>
       <tr>
         <td>{move.name}</td>
-        <td className={`type ${information.type}`}>{information.type}</td>
-        <td>{information.power}</td>
-        <td>{information.pp}</td>
-        <td>{information.accuracy}</td>
-        <td>{information.damage_class}</td>
-        <td className="effect">{information.effect}</td>
+        <td className={`type ${moveInformation.type}`}>
+          {moveInformation.type}
+        </td>
+        <td>{moveInformation.power}</td>
+        <td>{moveInformation.pp}</td>
+        <td>{moveInformation.accuracy}</td>
+        <td>{moveInformation.damage_class}</td>
+        <td className="effect">{moveInformation.effect}</td>
       </tr>
     </>
   );

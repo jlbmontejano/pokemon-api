@@ -1,30 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Move from "./Individual/Move";
 import "./Containers.css";
 
-const MovesList = ({
-  allResults,
-  setAllResults,
-  filteredResults,
-  setFilteredResults,
-  offset = 0,
-}) => {
-  const handleFetch = () => {
-    fetch(`https://pokeapi.co/api/v2/move?limit=25&offset=${offset}`)
-      .then(res => res.json())
-      .then(data => {
-        setAllResults(data.results);
-        setFilteredResults(allResults);
-      })
-      .catch(err => console.error(err));
-  };
-  useEffect(() => {
-    handleFetch();
-  }, []);
-  useEffect(() => {
-    handleFetch();
-  }, [offset]);
-
+const MovesList = ({ allResults, filteredResults, offset }) => {
   return allResults.length === 0 ? (
     <h1>Loading...</h1>
   ) : (
@@ -49,7 +27,7 @@ const MovesList = ({
         <tbody>
           {filteredResults.length !== 0 ? (
             filteredResults.map(move => {
-              return <Move move={move} />;
+              return <Move move={move} key={move.name} />;
             })
           ) : (
             <tr>

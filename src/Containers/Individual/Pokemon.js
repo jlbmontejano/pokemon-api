@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Individual.css";
 
-const Pokemon = ({ pokemon }) => {
-  const [information, setInformation] = useState({
+const Pokemon = ({ pokemon, key }) => {
+  const [pokemonInformation, setPokemonInformation] = useState({
     name: pokemon.name,
     types: [],
     id: "",
@@ -17,7 +17,7 @@ const Pokemon = ({ pokemon }) => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`)
     .then(res => res.json())
     .then(data => {
-      setInformation({
+      setPokemonInformation({
         types: data.types,
         id: data.id,
         abilities: data.abilities,
@@ -33,15 +33,17 @@ const Pokemon = ({ pokemon }) => {
     setMoreInfo(false);
   }, [pokemon.name]);
 
-  return !information.types || !information.id ? (
-    <></>
+  return !pokemonInformation ? (
+    <>
+      <h1>Loading...</h1>
+    </>
   ) : (
     <>
       <tr>
-        <td>{`#${information.id}`}</td>
+        <td>{`#${pokemonInformation.id}`}</td>
         <td>
           <img
-            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${information.id}.png`}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonInformation.id}.png`}
             alt={`${pokemon.name}`}
           />
         </td>
@@ -50,7 +52,7 @@ const Pokemon = ({ pokemon }) => {
             {pokemon.name}
           </p>
         </td>
-        {information.types.map(slot => {
+        {pokemonInformation.types.map(slot => {
           return <td className={`type ${slot.type.name}`}>{slot.type.name}</td>;
         })}
       </tr>
@@ -58,7 +60,7 @@ const Pokemon = ({ pokemon }) => {
         <tr className="more-info">
           <td colSpan={2}>
             <h4>Base Stats:</h4>
-            {information.stats.map(slot => {
+            {pokemonInformation.stats.map(slot => {
               return (
                 <p className={`abilities`}>
                   {slot.stat.name}:&nbsp;{slot.base_stat}
@@ -68,22 +70,22 @@ const Pokemon = ({ pokemon }) => {
           </td>
           <td>
             <h4>Abilities:</h4>
-            {information.abilities.map(slot => {
+            {pokemonInformation.abilities.map(slot => {
               return <p className={`abilities`}>{slot.ability.name}</p>;
             })}
           </td>
           <td>
             <h4 className="info-number">Base Exp:&nbsp;</h4>
-            <p className="info-number">{information.experience}</p>
+            <p className="info-number">{pokemonInformation.experience}</p>
           </td>
           <td>
             <div>
               <h4 className="info-number">Height:&nbsp;</h4>
-              <p className="info-number">{information.height / 10} m</p>
+              <p className="info-number">{pokemonInformation.height / 10} m</p>
             </div>
             <div>
               <h4 className="info-number">Weight:&nbsp;</h4>
-              <p className="info-number">{information.weight / 10} kg</p>
+              <p className="info-number">{pokemonInformation.weight / 10} kg</p>
             </div>
           </td>
         </tr>
