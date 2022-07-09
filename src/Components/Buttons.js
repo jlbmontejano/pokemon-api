@@ -1,16 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { PageContext } from "../App";
 import "./Components.css";
 
-const Buttons = ({ offset = 0, setOffset = () => {}, currentPage }) => {
-  let disableNextButton = true;
+const Buttons = () => {
+  const {
+    currentPage,
+    setAllResults,
+    setFilteredResults,
+    offset,
+    setOffset,
+  } = useContext(PageContext);
+
+  const [disableNext, setDisableNext] = useState(true);
+
   useEffect(() => {
     fetch(`https://pokeapi.co/api/v2/${currentPage}?limit=25&offset=${offset}`)
       .then(res => res.json())
       .then(data => {
+        setAllResults(data.results);
+        setFilteredResults(data.results);
         if (data.next === null) {
-          disableNextButton = true;
+          setDisableNext(true);
         } else {
-          disableNextButton = false;
+          setDisableNext(false);
         }
       });
   }, [offset, currentPage]);
@@ -33,7 +45,7 @@ const Buttons = ({ offset = 0, setOffset = () => {}, currentPage }) => {
             <span>Previous</span>
           </button>
         )}
-        {disableNextButton === true ? (
+        {disableNext === true ? (
           <button className="next-button" disabled>
             <span>Next</span>
           </button>

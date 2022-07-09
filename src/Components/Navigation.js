@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PageContext } from "../App";
 import "./Components.css";
 
-const Navigation = ({
-  setCurrentPage,
-  setOffset,
-}) => {
+const Navigation = () => {
+  const {
+    setCurrentPage,
+    setAllResults,
+    setFilteredResults,
+    offset,
+    setOffset,
+  } = useContext(PageContext);
+
   const handleChange = option => {
+    setAllResults([]);
+    setFilteredResults([]);
     setOffset(0);
     setCurrentPage(option);
+    handleFetch(option);
+  };
+
+  const handleFetch = option => {
+    fetch(`https://pokeapi.co/api/v2/${option}?limit=25&offset=${offset}`)
+      .then(res => res.json())
+      .then(data => {
+        setAllResults(data.results);
+        setFilteredResults(data.results);
+      })
+      .catch(err => console.error(err));
   };
 
   return (

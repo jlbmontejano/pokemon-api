@@ -1,14 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { PageContext } from "../App";
 import "./Components.css";
 
-const Searchfield = ({ allResults, setFilteredResults }) => {
+const Searchfield = () => {
+  const { allResults, setFilteredResults } = useContext(PageContext);
+
   const [searchfield, setSearchfield] = useState("");
 
   const handleChange = event => {
     setSearchfield(event.target.value);
-    setFilteredResults(
-      allResults.filter(entry => entry.name.includes(searchfield.toLowerCase()))
-    );
+
+    if (event.target.value !== "") {
+      setFilteredResults(
+        allResults.filter(entry =>
+          entry.name.includes(searchfield.toLowerCase())
+        )
+      );
+    } else {
+      setFilteredResults(allResults);
+    }
   };
 
   return (

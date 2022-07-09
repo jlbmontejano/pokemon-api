@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./Individual.css";
 
-const Type = ({ type }) => {
-  const [information, setInformation] = useState({
+const Type = ({ type, key }) => {
+  const [typeInformation, setTypeInformation] = useState({
+    name: type.name,
     id: "",
     double_damage_from: [],
     double_damage_to: [],
@@ -15,7 +16,7 @@ const Type = ({ type }) => {
   fetch(`https://pokeapi.co/api/v2/type/${type.name}`)
     .then(res => res.json())
     .then(data => {
-      setInformation({
+      setTypeInformation({
         id: data.id,
         double_damage_from: data.damage_relations.double_damage_from,
         double_damage_to: data.damage_relations.double_damage_to,
@@ -27,14 +28,16 @@ const Type = ({ type }) => {
     })
     .catch(err => console.error(err));
 
-  return !information.id ? (
-    <></>
+  return !typeInformation ? (
+    <>
+      <h1>Loading...</h1>
+    </>
   ) : (
-    <tr id={`${type.name}`}>
-      <td>{`#${information.id}`}</td>
+    <tr id={`${type.name}`} key={key}>
+      <td>{`#${typeInformation.id}`}</td>
       <td className={`type ${type.name}`}>{`${type.name}`}</td>
       <td className="inside-table-damage">
-        {information.double_damage_from.map(damage => {
+        {typeInformation.double_damage_from.map(damage => {
           return (
             <td className={`type ${damage.name}`}>
               <a href={`#${damage.name}`}>{damage.name}</a>
@@ -43,7 +46,7 @@ const Type = ({ type }) => {
         })}
       </td>
       <td className="inside-table-damage">
-        {information.double_damage_to.map(damage => {
+        {typeInformation.double_damage_to.map(damage => {
           return (
             <td className={`type ${damage.name}`}>
               <a href={`#${damage.name}`}>{damage.name}</a>
@@ -52,7 +55,7 @@ const Type = ({ type }) => {
         })}
       </td>
       <td className="inside-table-damage">
-        {information.half_damage_from.map(damage => {
+        {typeInformation.half_damage_from.map(damage => {
           return (
             <td className={`type ${damage.name}`}>
               <a href={`#${damage.name}`}>{damage.name}</a>
@@ -61,7 +64,7 @@ const Type = ({ type }) => {
         })}
       </td>
       <td className="inside-table-damage">
-        {information.half_damage_to.map(damage => {
+        {typeInformation.half_damage_to.map(damage => {
           return (
             <td className={`type ${damage.name}`}>
               <a href={`#${damage.name}`}>{damage.name}</a>
@@ -70,7 +73,7 @@ const Type = ({ type }) => {
         })}
       </td>
       <td className="inside-table-damage">
-        {information.no_damage_from.map(damage => {
+        {typeInformation.no_damage_from.map(damage => {
           return (
             <td className={`type ${damage.name}`}>
               <a href={`#${damage.name}`}>{damage.name}</a>
@@ -79,7 +82,7 @@ const Type = ({ type }) => {
         })}
       </td>
       <td className="inside-table-damage">
-        {information.no_damage_to.map(damage => {
+        {typeInformation.no_damage_to.map(damage => {
           return (
             <td className={`type ${damage.name}`}>
               <a href={`#${damage.name}`}>{damage.name}</a>
