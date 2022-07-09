@@ -10,6 +10,51 @@
     margin-bottom: 0;
 }
 
+/* HOME */
+.home-container {
+    display: grid;
+    grid-template-rows: 40% 40% 20%;
+    height: calc(100vh - 38px);
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome-message {
+    letter-spacing: .35em;
+}
+
+.footer {
+    align-self: flex-end;
+}
+
+.footer p {
+    font-size: .7em;
+    margin: 0;
+}
+
+.footer p a {
+    color: blue;
+}
+
+@media (min-width: 600px) {
+    .home-container {
+        height: calc(100vh - 50px);
+    }
+}
+
+@media (min-width: 900px) {
+    .home-container {
+        height: calc(100vh - 55px);
+    }
+}
+
+@media (min-width: 1200px) {
+    .home-container {
+        height: calc(100vh - 64px);
+    }
+}
+
+
 /* POKEMON */
 .th-pokemon-entry,
 .th-pokemon-type {
@@ -23,7 +68,7 @@
 /* TYPES */
 .th-types-entry,
 .th-types-type {
-    width: 6%;
+    width: 5%;
 }
 
 /* MOVES */

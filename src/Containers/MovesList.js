@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PageContext } from "../App";
 import Move from "./Individual/Move";
 import "./Containers.css";
 
-const MovesList = ({ allResults, filteredResults, offset }) => {
+const MovesList = () => {
+  const { allResults, filteredResults, offset } = useContext(PageContext);
+
   return allResults.length === 0 ? (
     <h1>Loading...</h1>
   ) : (

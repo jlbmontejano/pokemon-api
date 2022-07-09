@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PageContext } from "../App";
 import Type from "./Individual/Type";
 import "./Containers.css";
 
-const TypesList = ({ allResults, filteredResults }) => {
+const TypesList = () => {
+  const { allResults, filteredResults } = useContext(PageContext);
+
   return allResults.length === 0 ? (
     <h1>Loading...</h1>
   ) : (

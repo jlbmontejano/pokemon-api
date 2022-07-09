@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PageContext } from "../App";
 import Pokemon from "./Individual/Pokemon";
 import "./Containers.css";
 
-const PokemonList = ({ allResults, filteredResults, offset }) => {
+const PokemonList = () => {
+  const { allResults, filteredResults, offset } = useContext(PageContext);
+
   return allResults.length === 0 ? (
     <h1>Loading...</h1>
   ) : (

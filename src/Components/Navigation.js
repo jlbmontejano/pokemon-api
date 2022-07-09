@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { PageContext } from "../App";
 import "./Components.css";
 
-const Navigation = ({
-  setAllResults,
-  setFilteredResults,
-  setCurrentPage,
-  offset,
-  setOffset,
-}) => {
+const Navigation = () => {
+  const {
+    setCurrentPage,
+    setAllResults,
+    setFilteredResults,
+    offset,
+    setOffset,
+  } = useContext(PageContext);
+
   const handleChange = option => {
     setAllResults([]);
     setFilteredResults([]);
